@@ -1,7 +1,7 @@
 let b;
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(windowWidth, windowHeight*2);
   frameRate(60);
   b = new Ball();
 }
@@ -13,8 +13,8 @@ function draw() {
 
 class Ball {
   constructor() {
-    this.anchor = createVector (400, 400);
-    this.pos = createVector (400, 400);
+    this.anchor = createVector (windowWidth/2, windowHeight*3/4);
+    this.pos = createVector (windowWidth/2, windowHeight*3/4);
     this.vel = createVector (0, 0);
     this.acc = createVector (0, 0);
   }    
