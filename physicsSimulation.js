@@ -6,10 +6,6 @@ function setup() {
   b = new Ball();
   c = new Ball2();
   d = new Ball3();
-}
-
-function draw() {
-  background(240);
   button = createButton('>');
   button.style('font-size', 100 + 'px');
   button.style('border', 'none');
@@ -21,6 +17,12 @@ function draw() {
   button.style('border', 'none');
   button.position(15, windowHeight/2);
   button.mousePressed(previousSpring);
+  
+}
+
+function draw() {
+  background(240);
+
   if(val == 1){
     b.update();
   }
@@ -32,12 +34,16 @@ function draw() {
   }
 }
 
-function nextSpring() {
+function nextSpring(){
   val++;
+  if(val == 2){
+    c = new Ball2();
+  }
   if(val == maxSpring+1){
     val = 1;
   }
 }
+
 function previousSpring() {
   val--;
   if(val == 0){
@@ -119,7 +125,7 @@ class Ball2 {
     this.pos.add(this.vel);
     this.vel2.mult(0.992);
     this.pos2.add(this.vel2);
-    if (dist(mouseX, mouseY, this.pos.x, this.pos.y) < 100 && mouseIsPressed) {    
+    if (dist(mouseX, mouseY, this.pos.x, this.pos.y) < 30 && mouseIsPressed) {    
       this.pos.x = mouseX;
       this.pos.y = mouseY;
       this.vel.mult(0);
@@ -155,7 +161,7 @@ class Ball3 {
     this.acc = [];    
     this.sForce = [];  
     this.x = [];
-    this.anchor = createVector (windowWidth/2, windowWidth/5); 
+    this.anchor = createVector (windowWidth/2, 100); 
     for (let i=0; i<this.size; i++) {                         
       this.pos[i] = createVector(windowWidth/2, 150+i*500/this.size);            
       this.vel[i] = createVector();
@@ -188,6 +194,13 @@ class Ball3 {
       this.vel[i].mult(0.981);      
       this.pos[i].add(this.vel[i]);      
     }
+    for (let i=0; i<this.size-1; i++) {
+    if (dist(mouseX, mouseY, this.pos[i].x, this.pos[i].y) < 30 && mouseIsPressed) {
+        this.pos[i].x = mouseX;
+        this.pos[i].y = mouseY;
+        this.vel[i].mult(0);
+      }
+    }
   }
 
   applyForce() {      
@@ -206,13 +219,5 @@ class Ball3 {
     }
   }
 }
-function mouseDragged() {
-  for (let i=0; i<d.size-1; i++) {
-    if (dist(mouseX, mouseY, d.pos[i].x, d.pos[i].y) < 30) {
-      d.pos[i].x = mouseX;
-      d.pos[i].y = mouseY;
-      d.vel[i].mult(0);
-    }
-  }
-}
+
 
