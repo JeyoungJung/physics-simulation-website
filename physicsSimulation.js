@@ -162,7 +162,7 @@ class Ball3 {
     this.sForce = [];  
     this.x = [];
     this.anchor = createVector (windowWidth/2, 100); 
-    for (let i=0; i<this.size-1; i++) {                         
+    for (let i=0; i<this.size; i++) {                         
       this.pos[i] = createVector(windowWidth/2, 150+i*500/this.size);            
       this.vel[i] = createVector();
       this.acc[i] = createVector();
