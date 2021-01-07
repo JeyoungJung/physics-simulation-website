@@ -162,7 +162,7 @@ class Ball3 {
     this.sForce = [];  
     this.x = [];
     this.anchor = createVector (windowWidth/2, 100); 
-    for (let i=0; i<this.size; i++) {                         
+    for (let i=0; i<this.size-1; i++) {                         
       this.pos[i] = createVector(windowWidth/2, 150+i*500/this.size);            
       this.vel[i] = createVector();
       this.acc[i] = createVector();
@@ -177,7 +177,7 @@ class Ball3 {
 
   visualUpdate() {    
     strokeWeight(3);
-    for (let i=0; i<this.size-1; i++) {
+    for (let i=0; i<this.size; i++) {
       if (i>0) {
         line(this.anchor.x, this.anchor.y, this.pos[0].x, this.pos[0].y);
         line(this.pos[i].x, this.pos[i].y, this.pos[i-1].x, this.pos[i-1].y);
